@@ -35,27 +35,32 @@
         </th>
         </thead>
         <tbody>
+        <%
+            UserDao us = new UserDao();
+            List<User> data = us.getAllUser();
 
-
+        %>
+        <% for (User rs:data) {
+           int id = rs.getId();%>
         <tr >
-            <td>
+            <td><%=id%>
+            </td>
+            <td><%=rs.getName()%>
+            </td>
+            <td><%=rs.getPassword()%>
+            </td>
+            <td><%=rs.getEmail()%>
             </td>
             <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-                <a>edit</a>
+                <a href='EditServlet?id=<%=id%>'>edit</a>
             </td>
         </tr>
-
+        <% } %>
         </tbody>
     </table>
 
     <h1>Add Data</h1>
-    <form  action="" method="post">
+    <form  action="SaveServlet" method="post">
         <table>
             <tr>
                 <td>Name:</td>
